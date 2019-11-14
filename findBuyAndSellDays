@@ -1,0 +1,14 @@
+def findBuySellDays(prices):
+    if len(prices)<2:
+        return 0
+    gain = prices[0]
+    for i in range(len(prices)):
+        for j in range(i+1,10):
+            if prices[j]-prices[i] > gain:
+                gain=prices[j]-prices[i]
+                sellDay=j+1
+                buyDay=i+1
+    return (buyDay,sellDay,gain)
+
+prices=[3, 8, 8, 55, 38, 1, 7, 42, 54, 53]
+print(findBuySellDays(prices))
