@@ -1,0 +1,25 @@
+"""
+This function returns the total change in quarters, dime, nickle and pennie for a given number
+"""
+
+def calChange(num):
+    dime=0
+    quarter=0
+    pennie=0
+    nickle=0
+    while(num>0):
+        if num>=25:
+            quarter+=1
+            num-=25
+        elif num>10:
+            dime+=1
+            num-=10
+        elif num>=5:
+            nickle+=1
+            num-=5
+        else:
+            pennie+=1
+            num-=1
+    return ([quarter,dime,nickle,pennie])
+    
+print(calChange(4))
