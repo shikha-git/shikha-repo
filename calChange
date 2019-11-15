@@ -1,25 +1,31 @@
 """
-This function returns the total change in quarters, dime, nickle and pennie for a given number
+This function returns the list of total change in quarters, dime, nickle and pennie for a given number
 """
 
 def calChange(num):
-    dime=0
-    quarter=0
-    pennie=0
-    nickle=0
-    while(num>0):
-        if num>=25:
-            quarter+=1
-            num-=25
-        elif num>10:
-            dime+=1
-            num-=10
-        elif num>=5:
-            nickle+=1
-            num-=5
+    #create a dictionary for change
+    change={'quarter': 0, 'dime': 0,'nickle': 0, 'pennie': 0} 
+    #check if the given input is integer, if not then return 0
+    if type(num) != int:
+        return (0)
+    #loop until the num becomes 0 
+    while (num > 0):
+        if num >= 25: #first check if num is greater than 25 then increment the quarter
+            change['quarter'] += 1
+            num -= 25
+        elif num > 10: #if num is greater than 10 then increment the dime
+            change['dime'] += 1
+            num -= 10
+        elif num >= 5: #if num is greater than 5 then increment the nickle
+            change['nickle'] += 1
+            num -= 5
         else:
-            pennie+=1
-            num-=1
-    return ([quarter,dime,nickle,pennie])
-    
-print(calChange(4))
+            change['pennie'] += 1 #once the num is less tha 5, increment the pennie
+            num -= 1
+    return (change)
+
+#call the function with different input values
+print(calChange(83))
+
+#output would be:
+#{'pennie': 3, 'nickle': 1, 'quarter': 3, 'dime': 0}
