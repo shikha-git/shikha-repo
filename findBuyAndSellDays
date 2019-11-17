@@ -1,14 +1,25 @@
+"""
+This Function will find the best selling and buying days,
+Assumtion: The stock prices are given as a "list"
+"""
+
 def findBuySellDays(prices):
-    if len(prices)<2:
+    if len(prices)<2: #return 0 if the list has less than 2 values(it should have atleast 2 prices- 1.buy 2.sell)
         return 0
     gain = prices[0]
+    sellDay = 0
+    buyDay = 0
+    """
+    running 2 loops until length of the list, keeping a buy day constant 
+    and checking the gain for the rest of the days post buy day
+    """
     for i in range(len(prices)):
         for j in range(i+1,10):
-            if prices[j]-prices[i] > gain:
-                gain=prices[j]-prices[i]
+            if prices[j]-prices[i] > gain: #calculating the gain and reassigning it if the gain is greater than the current gain.
+                gain=prices[j]-prices[i] 
                 sellDay=j+1
                 buyDay=i+1
     return (buyDay,sellDay,gain)
 
-prices=[3, 8, 8, 55, 38, 1, 7, 42, 54, 53]
-print(findBuySellDays(prices))
+prices=[3, 8, 8, 55, 38, 1, 7, 42, 54, 53] #this is the input (list of prices)
+print(findBuySellDays(prices)) #calling the function
