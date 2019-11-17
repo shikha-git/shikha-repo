@@ -1,0 +1,31 @@
+#create the schema of the table (Input_Table)
+CREATE TABLE Input_Table (  
+Id INT NOT NUll,  
+Home_Page INT NOT NULL,  
+Product_Page INT NOT NULL,  
+Warranty_Page INT NOT NULL,  
+PRIMARY KEY (Id)
+);
+
+#insert all the values into the table
+INSERT INTO Input_Table VALUES (1,1,1,1),
+                (2,1,1,0),
+                (3,1,0,1),
+                (4,1,0,0),
+                (5,0,1,1),
+                (6,0,1,0),
+                (7,0,0,1),
+                (8,0,0,0);
+                  
+#Query to get the Output_Table
+SELECT Page, Counts FROM (SELECT  SUM(Home_Page) AS Home_Page, SUM(Product_Page) AS Product_Page ,SUM(Warranty_Page) AS Warranty_Page from Input_Table) 
+UNPIVOT(Counts FOR Page IN (Home_Page,Product_Page,Warranty_Page));
+
+#Output_Table
+
+Page	            Counts
+Home_Page	        4
+Product_Page	    4
+Warranty_Page   	4
+
+
